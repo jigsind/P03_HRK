@@ -56,7 +56,7 @@ type(cam)
 
 img_array = []
 i=0
-j=1000
+j=2000
 yes_counter = 0
 while(cam.isOpened()):
     ret, frame = cam.read()
@@ -64,7 +64,7 @@ while(cam.isOpened()):
     if ret==False: # if video is over then 'break'
         break
         
-    if i==2000: # if 5000 images then 'break'
+    if i==1500: # if 5000 images then 'break'
         break
     i+=1
     

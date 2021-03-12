@@ -46,7 +46,7 @@ if not os.getcwd()=='/Users/Jigs/PythonAI/Datasets/SampleVideo':
 # In[15]:
 
 
-cam = cv2.VideoCapture("/Users/Jigs/PythonAI/Datasets/SampleVideo/Sample-Measurement.mp4")
+cam = cv2.VideoCapture("/Users/Jigs/PythonAI/Datasets/SampleVideo/Sample_Measurement_Finland_01.mp4")
 
 
 # In[16]:
@@ -78,7 +78,7 @@ while(cam.isOpened()):
     
     resize_img = cv2.resize(crop_img, (224,224))
     
-    if i>800:
+    if i>900:
         cv2.putText(resize_img, 'Yes', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (300, 300, 0, 255), 4)
         yes_counter+=1
         yes_timer = str(round(yes_counter/30))+ ' sec'
@@ -127,7 +127,7 @@ cv2.destroyAllWindows()
 # In[8]:
 
 
-plt.imshow(crop_img), crop_img.shape
+plt.imshow(crop_img), crop_img.shape, crop_img.size
 
 
 # In[9]:
