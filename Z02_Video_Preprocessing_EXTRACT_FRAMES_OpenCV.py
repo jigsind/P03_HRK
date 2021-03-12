@@ -46,11 +46,6 @@ if not os.getcwd()=='/Users/Jigs/PythonAI/Datasets/HRK4/ExtractedFrames':
 
 
 cam = cv2.VideoCapture("/Users/Jigs/PythonAI/Datasets/HRK4/HRK_100Frct_5C.mp4")
-
-
-# In[39]:
-
-
 type(cam)
 
 
@@ -69,7 +64,7 @@ while(cam.isOpened()):
     if ret==False: # if video is over then 'break'
         break
         
-    if i==5000: # if 5000 images then 'break'
+    if i==2000: # if 5000 images then 'break'
         break
     i+=1
     
@@ -79,7 +74,7 @@ while(cam.isOpened()):
     resize_img = cv2.resize(crop_img, (224,224))
     
     img_name = 'Measure_'+ str(j)+ '.jpg'
-    # print('Creating...'+ img_name)
+    print('Creating...'+ img_name)
     cv2.imwrite(img_name, resize_img)
     j+=1
 
