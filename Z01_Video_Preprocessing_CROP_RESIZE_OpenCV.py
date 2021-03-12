@@ -78,7 +78,7 @@ while(cam.isOpened()):
     
     resize_img = cv2.resize(crop_img, (224,224))
     
-    if i<500 or i>800:
+    if i>800:
         cv2.putText(resize_img, 'Yes', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (300, 300, 0, 255), 4)
         yes_counter+=1
         yes_timer = str(round(yes_counter/30))+ ' sec'
@@ -123,86 +123,6 @@ while(cam.isOpened()):
     i+=1
     
 cam.release()
-cv2.destroyAllWindows()
-# ## Creating Video from Images
-img_array = []
-
-for file in sorted(glob.glob('/Users/Jigs/PythonAI/Datasets/SampleVideo/Extracted_Images/*.jpg'), key=os.path.getmtime):
-    img = cv2.imread(file)
-    height, width, layers = img.shape
-    size = (width, height)
-    img_array.append(img)
-    
-out = cv2.VideoWriter('Measure_Image2Video_1.avi', cv2.VideoWriter_fourcc(*'DIVX'), 30 , size)
-
-for j in range(len(img_array)):
-    out.write(img_array[j])
-
-out.release()
-cv2.destroyAllWindows()plt.imshow(im, cmap='gray')
-# ## Crop the Image and Create a new Video
-z=0
-for file in sorted(glob.glob('/Users/Jigs/PythonAI/Datasets/SampleVideo/Extracted_Images/*.jpg'), key=os.path.getmtime):
-    img = cv2.imread(file)
-    crop_img = img[100:500, 400:850]
-    cv2.imwrite(file, crop_img)
-    # print('Cropping_'+ str(z))
-    z+=1img_array = []
-
-for file in sorted(glob.glob('/Users/Jigs/PythonAI/Datasets/SampleVideo/Extracted_Images/*.jpg'), key=os.path.getmtime):
-    img = cv2.imread(file)
-    height, width, layers = img.shape
-    size = (width, height)
-    img_array.append(img)
-    
-out = cv2.VideoWriter('Measure_Image2Video_1.mp4', cv2.VideoWriter_fourcc(*'MP4V'),30, size)
-
-for j in range(len(img_array)):
-    out.write(img_array[j])
-
-out.release()
-cv2.destroyAllWindows()
-# # Read Video, Extract Frame, Crop It and Save as a new Video
-cam = cv2.VideoCapture("/Users/Jigs/PythonAI/Datasets/SampleVideo/Sample-Measurement.mp4")#os.chdir('Datasets/SampleVideo')
-img_array = []
-i=0
-yes_counter = 0
-while(cam.isOpened()):
-    ret, frame = cam.read()
-    
-    if ret==False: # if video is over then 'break'
-        break
-        
-    if i==1000: # if 2000 images then 'break'
-        break
-    i+=1
-    
-    img = frame
-    crop_img = img[50:500, 400:850]
-    
-    
-    if i<500 or i>800:
-        cv2.putText(crop_img, 'Yes', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (300, 300, 0, 255), 4)
-        yes_counter+=1
-        yes_timer = str(round(yes_counter/30))+ ' sec'
-        cv2.putText(crop_img, yes_timer, (5, 90), cv2.FONT_HERSHEY_SIMPLEX, 1, (300, 300, 0, 255), 3)
-    else:
-        cv2.putText(crop_img, 'No', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 300, 300, 255), 4)
-        cv2.putText(crop_img, yes_timer, (5, 90), cv2.FONT_HERSHEY_SIMPLEX, 1, (300, 300, 0, 255), 3)
-    
-    height, width, layers = crop_img.shape
-    size = (width, height)
-    img_array.append(crop_img)
-
-## Define the codec and create VideoWriter object (MJPG-> .mp4, DIVX-> .avi)
-out = cv2.VideoWriter('Measure_Image2Video.mp4', cv2.VideoWriter_fourcc(*'MP4V'), 30 , size)
-
-for j in range(len(img_array)):
-    out.write(img_array[j])
-
-## Release everything if job is finished 
-cam.release()
-out.release()
 cv2.destroyAllWindows()
 # In[8]:
 
